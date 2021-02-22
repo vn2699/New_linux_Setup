@@ -51,6 +51,7 @@ then
 	echo $passwd | sudo -S dnf install gnome-tweaks -y
 	
 elif [ "$os" = "debian" ]
+then
 	#echo "Under Construction!!!!"
 	echo $passwd | sudo -S apt update
 	echo $passwd | sudo -S apt upgrade
@@ -67,7 +68,7 @@ elif [ "$os" = "debian" ]
     	curl \
     	gnupg-agent \
     	software-properties-common
-	curl -fsSL https://download.docker.com/linux/debian/gpg | echo $passwd | sudo -S apt-key add -
+	curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
 	echo $passwd | sudo -S add-apt-repository \
    	"deb [arch=amd64] https://download.docker.com/linux/debian \
    	$(lsb_release -cs) \
@@ -81,7 +82,6 @@ elif [ "$os" = "debian" ]
         echo $passwd | sudo -S install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 	curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
         echo $passwd | sudo -S mv /tmp/eksctl /usr/local/bin
-
 fi
 
 echo $passwd | sudo -S reboot
