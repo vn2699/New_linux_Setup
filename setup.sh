@@ -1,13 +1,13 @@
 #! /bin/bash
 
-$passwd = $2
+passwd=$2
 
 if [ $# -le 1 ]
 then
 	echo "Enter the right arguments"
 fi
 
-if [ $1 -ne "debian" || $1 -ne "redhat" ]
+if [ $1 -ne "debian" ] || [ $1 -ne "redhat" ]
 then
 	echo "Enter the right distro for which you want to setup"
 	echo "Enter argument as debian or redhat!!!"
