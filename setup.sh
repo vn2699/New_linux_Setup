@@ -29,6 +29,8 @@ then
 	echo $passwd | sudo -S dnf install \*-firmware -y
 	echo $passwd | sudo -S dnf install openssl -y
 	./nvidia.sh $passwd
+	cp .gitmessage.txt ~/.gitmessage.txt
+        cp .gitconfig ~/.gitconfig
 	echo $passwd | sudo -S dnf install mutt -y
 	./mutt.sh
 	cp ./.muttrc ~/.muttrc
@@ -55,6 +57,8 @@ then
 	#echo "Under Construction!!!!"
 	echo $passwd | sudo -S apt update
 	echo $passwd | sudo -S apt upgrade
+	cp .gitmessage.txt ~/.gitmessage.txt
+	cp .gitconfig ~/.gitconfig
 	echo $passwd | sudo -S apt install mutt -y
 	./mutt.sh
         cp ./.muttrc ~/.muttrc

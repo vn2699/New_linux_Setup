@@ -1,0 +1,14 @@
+[user]
+	email = vn2699@gmail.com
+	name = vn2699
+[format]
+	signoff = true
+[core]
+	editor = vim
+[sendmail]
+	smtpserver = smtp.gmail.com
+	smtpserverport = 587
+	smtpencryption = tls
+	smtpuser = vn2699@gmail.com
+[commit]
+	template = /home/varun/.gitmessage.txt
