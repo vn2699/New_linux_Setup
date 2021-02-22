@@ -50,7 +50,37 @@ then
 	echo $passwd | sudo -S dnf install gnome-tweaks -y
 	
 elif [ $1 -eq "debian" ]
-	echo "Under Construction!!!!"
+	#echo "Under Construction!!!!"
+	echo $passwd | sudo -S apt update
+	echo $passwd | sudo -S apt upgrade
+	./mutt.sh
+        cp ./.muttrc ~/.muttrc
+        mkdir -p ~/.mutt/cache
+	./go.sh $passwd
+        curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+        unzip awscliv2.zip
+	echo $passwd | sudo -S ./aws/install
+	echo $passwd | sudo -S apt-get install \
+    	apt-transport-https \
+    	ca-certificates \
+    	curl \
+    	gnupg-agent \
+    	software-properties-common
+	curl -fsSL https://download.docker.com/linux/debian/gpg | echo $passwd | sudo -S apt-key add -
+	echo $passwd | sudo -S add-apt-repository \
+   	"deb [arch=amd64] https://download.docker.com/linux/debian \
+   	$(lsb_release -cs) \
+   	stable"
+	echo $passwd | sudo -S apt-get update
+	echo $passwd | sudo -S sudo apt-get install docker-ce docker-ce-cli containerd.io
+	echo $passwd | sudo -S systemctl start docker
+        echo $passwd | sudo -S systemctl enable docker
+        echo $passwd | sudo -S usermod -aG docker varun
+	curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+        echo $passwd | sudo -S install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+	curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+        echo $passwd | sudo -S mv /tmp/eksctl /usr/local/bin
+
 fi
 
 echo $passwd | sudo -S reboot
