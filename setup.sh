@@ -8,13 +8,13 @@ then
 	echo "Enter the right arguments"
 fi
 
-if [ "$os" -ne "debian" ] || [ "$os" -ne "redhat" ]
+if [ "$os" != "debian" ] || [ "$os" != "redhat" ]
 then
 	echo "Enter the right distro for which you want to setup"
 	echo "Enter argument as debian or redhat!!!"
 fi
 
-if [ "$os" -eq "redhat" ]
+if [ "$os" = "redhat" ]
 then
 	echo $passwd | sudo -S dnf update && sudo -S dnf upgrade -y 
 	echo $passwd | sudo -S dnf install vim
@@ -50,7 +50,7 @@ then
 	echo $passwd | sudo -S mv /tmp/eksctl /usr/local/bin
 	echo $passwd | sudo -S dnf install gnome-tweaks -y
 	
-elif [ "$os" -eq "debian" ]
+elif [ "$os" = "debian" ]
 	#echo "Under Construction!!!!"
 	echo $passwd | sudo -S apt update
 	echo $passwd | sudo -S apt upgrade
