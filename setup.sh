@@ -55,6 +55,7 @@ then
 	#echo "Under Construction!!!!"
 	echo $passwd | sudo -S apt update
 	echo $passwd | sudo -S apt upgrade
+	echo $passwd | sudo -S apt install mutt
 	./mutt.sh
         cp ./.muttrc ~/.muttrc
         mkdir -p ~/.mutt/cache
@@ -70,7 +71,7 @@ then
     	software-properties-common
 	curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
 	echo $passwd | sudo -S add-apt-repository \
-   	"deb [arch=amd64] https://download.docker.com/linux/debian \
+   	"deb [arch=amd64] https://download.docker.com/linux/ubuntu \
    	$(lsb_release -cs) \
    	stable"
 	echo $passwd | sudo -S apt-get update
