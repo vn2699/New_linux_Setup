@@ -55,7 +55,7 @@ then
 	#echo "Under Construction!!!!"
 	echo $passwd | sudo -S apt update
 	echo $passwd | sudo -S apt upgrade
-	echo $passwd | sudo -S apt install mutt
+	echo $passwd | sudo -S apt install mutt -y
 	./mutt.sh
         cp ./.muttrc ~/.muttrc
         mkdir -p ~/.mutt/cache
@@ -68,14 +68,14 @@ then
     	ca-certificates \
     	curl \
     	gnupg-agent \
-    	software-properties-common
+    	software-properties-common -y
 	curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
 	echo $passwd | sudo -S add-apt-repository \
    	"deb [arch=amd64] https://download.docker.com/linux/ubuntu \
    	$(lsb_release -cs) \
    	stable"
 	echo $passwd | sudo -S apt-get update
-	echo $passwd | sudo -S sudo apt-get install docker-ce docker-ce-cli containerd.io
+	echo $passwd | sudo -S sudo apt-get install docker-ce docker-ce-cli containerd.io -y
 	echo $passwd | sudo -S systemctl start docker
         echo $passwd | sudo -S systemctl enable docker
         echo $passwd | sudo -S usermod -aG docker varun
