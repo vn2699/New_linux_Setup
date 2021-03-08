@@ -8,7 +8,7 @@ then
 	echo "Enter the right arguments"
 fi
 
-if [ "$os" != "debian" ] || [ "$os" != "redhat" ]
+if [ "$os" != "debian" ] || [ "$os" != "redhat" ] || [ "$os" != "ubuntu"  ]
 then
 	echo "Enter the right distro for which you want to setup"
 	echo "Enter argument as debian or redhat!!!"
@@ -52,7 +52,7 @@ then
 	echo $passwd | sudo -S mv /tmp/eksctl /usr/local/bin
 	echo $passwd | sudo -S dnf install gnome-tweaks -y
 	
-elif [ "$os" = "debian" ]
+elif [ "$os" = "ubuntu" ]
 then
 	#echo "Under Construction!!!!"
 	echo $passwd | sudo -S apt update
@@ -87,6 +87,46 @@ then
         echo $passwd | sudo -S install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 	curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
         echo $passwd | sudo -S mv /tmp/eksctl /usr/local/bin
+
+elif [ "$os" = "debian" ]
+then
+	echo $passwd | su root
+	/sbin/usermod -aG sudo varun
+	echo $passwd | su varun
+	#echo "Under Construction!!!!"
+        echo $passwd | sudo -S apt update
+        echo $passwd | sudo -S apt upgrade
+        cp .gitmessage.txt ~/.gitmessage.txt
+        cp .gitconfig ~/.gitconfig
+        echo $passwd | sudo -S apt install mutt -y
+        ./mutt.sh
+        cp ./.muttrc ~/.muttrc
+        mkdir -p ~/.mutt/cache
+        ./go.sh $passwd
+        curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+        unzip awscliv2.zip
+        echo $passwd | sudo -S ./aws/install
+        echo $passwd | sudo -S apt-get install \
+        apt-transport-https \
+        ca-certificates \
+        curl \
+        gnupg -y
+	curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+       
+	echo \
+  	"deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian \
+  	$(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+        echo $passwd | sudo -S apt-get update
+        echo $passwd | sudo -S sudo apt-get install docker-ce docker-ce-cli containerd.io -y
+        echo $passwd | sudo -S systemctl start docker
+        echo $passwd | sudo -S systemctl enable docker
+        echo $passwd | sudo -S usermod -aG docker varun
+        curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+        echo $passwd | sudo -S install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+        curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+        echo $passwd | sudo -S mv /tmp/eksctl /usr/local/bin
+	source ~/.bashrc
 fi
 
 echo $passwd | sudo -S reboot
