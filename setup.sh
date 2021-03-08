@@ -90,9 +90,7 @@ then
 
 elif [ "$os" = "debian" ]
 then
-	echo $passwd | su root
-	/sbin/usermod -aG sudo varun
-	echo $passwd | su varun
+	su -c "/sbin/usermod -aG sudo varun"
 	#echo "Under Construction!!!!"
         echo $passwd | sudo -S apt update
         echo $passwd | sudo -S apt upgrade
