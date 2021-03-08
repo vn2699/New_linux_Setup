@@ -11,7 +11,7 @@ fi
 if [ "$os" != "debian" ] || [ "$os" != "redhat" ] || [ "$os" != "ubuntu"  ]
 then
 	echo "Enter the right distro for which you want to setup"
-	echo "Enter argument as debian or redhat!!!"
+	echo "Enter argument as ubuntu or debian or redhat!!!"
 fi
 
 if [ "$os" = "redhat" ]
@@ -51,6 +51,7 @@ then
 	curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
 	echo $passwd | sudo -S mv /tmp/eksctl /usr/local/bin
 	echo $passwd | sudo -S dnf install gnome-tweaks -y
+	source ~/.bashrc
 	
 elif [ "$os" = "ubuntu" ]
 then
@@ -87,6 +88,7 @@ then
         echo $passwd | sudo -S install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 	curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
         echo $passwd | sudo -S mv /tmp/eksctl /usr/local/bin
+	source ~/.bashrc
 
 elif [ "$os" = "debian" ]
 then
