@@ -8,13 +8,13 @@ then
 	echo "Enter the right arguments"
 fi
 
-if [ "$os" != "debian" ] || [ "$os" != "redhat" ] || [ "$os" != "ubuntu"  ]
+if [ "$os" != "debian" ] || [ "$os" != "fedora" ] || [ "$os" != "ubuntu"  ]
 then
 	echo "Enter the right distro for which you want to setup"
-	echo "Enter argument as ubuntu or debian or redhat!!!"
+	echo "Enter argument as ubuntu or debian or fedora!!!"
 fi
 
-if [ "$os" = "redhat" ]
+if [ "$os" = "fedora" ]
 then
 	echo $passwd | sudo -S dnf update && sudo -S dnf upgrade -y 
 	echo $passwd | sudo -S dnf install vim
