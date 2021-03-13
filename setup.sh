@@ -2,17 +2,26 @@
 
 passwd=$2
 os=$1
+distro=("fedora" "ubuntu" "debian")
 
 if [ "$#" -le 1 ]
 then
-	echo "Enter the right arguments"
+        echo "Enter the right arguments"
+        exit 1
 fi
 
-if [ "$os" != "debian" ] || [ "$os" != "fedora" ] || [ "$os" != "ubuntu"  ]
-then
-	echo "Enter the right distro for which you want to setup"
-	echo "Enter argument as ubuntu or debian or fedora!!!"
-fi
+for d in "${distr[@]}"
+do
+        if [ $os = $d ]
+        then
+                break
+        else
+                echo "Enter the right distro for which you want to setup"
+                echo "Enter argument as ubuntu or debian or fedora!!!"
+                exit 1
+        fi
+done
+
 
 if [ "$os" = "fedora" ]
 then
