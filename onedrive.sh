@@ -78,5 +78,6 @@ cat <<EOF > ~/.config/onedrive/config
 # sync_file_permissions = "600"
 # rate_limit = "131072"
 EOF
+onedrive --synchronize --resync
 onedrive --display-config
 onedrive --synchronize --verbose --dry-run
