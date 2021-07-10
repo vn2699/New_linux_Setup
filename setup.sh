@@ -64,6 +64,8 @@ then
 	echo $passwd | sudo -S chmod +x /usr/local/bin/docker-compose
 	echo $passwd | sudo -S ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+	source ~/.bashrc
+	nvm install node
 
 	./onedrive $os $passwd
 	./pop_os_shell.sh
@@ -108,7 +110,8 @@ then
         echo $passwd | sudo -S chmod +x /usr/local/bin/docker-compose
         echo $passwd | sudo -S ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-
+	source ~/.bashrc
+        nvm install node
 	./onedrive $os $passwd
 	./pop_os_shell.sh
 	source ~/.bashrc
@@ -153,7 +156,8 @@ then
         echo $passwd | sudo -S chmod +x /usr/local/bin/docker-compose
         echo $passwd | sudo -S ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-
+	source ~/.bashrc
+        nvm install node
 	./onedrive $os $passwd
 	source ~/.bashrc
 fi
